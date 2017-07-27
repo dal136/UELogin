@@ -21,7 +21,6 @@ public class LoginFilter implements Filter {
            !path.endsWith("login.jsp") &&
            !path.endsWith("LoginServlet")){
             response.sendRedirect("login.jsp");
-            System.out.println(path);
             return;
         }
         else {
