@@ -21,9 +21,16 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        String id = session.getId();
+        System.out.println("servlet session:"+id);
         if("admin".equals(username.trim()) && "admin".equals(password.trim())){
             session.setAttribute("isLogined","Y");
-            response.sendRedirect("http://112.5.162.246:580/ue/index.html");
+            String path = (String)session.getAttribute("path");
+            session.removeAttribute("path");
+            if(path == null)
+                response.sendRedirect("http://112.5.162.246:580/ue/index.html");
+            else
+                response.sendRedirect(path);
         }
         else{
             response.sendRedirect("login.jsp?error=yes");
